@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Ahmad Alvin Griffin, a Computer Science graduate focused on full-stack engineering, cloud, and computer vision."
+    />
+    <title>Ahmad Alvin Griffin | Fullstack & AI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="mesh" aria-hidden="true"></canvas>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="scroll-meter" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Ahmad Alvin Griffin home">
+        <span class="brand-mark">AG</span>
+        <span>Ahmad Alvin</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#projects">Projects</a>
+        <a href="#stack">Stack</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="icon-link" href="assets/Ahmad-Alvin-Griffin-CV.pdf" target="_blank" rel="noreferrer" aria-label="Open CV">
+        CV
+      </a>
+    </header>
+
+    <main>
+      <section id="home" class="hero section">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Jakarta based builder / Computer Vision / Fullstack</p>
+          <h1>Ahmad Alvin Griffin</h1>
+          <p class="hero-role">
+            I build production-ready web systems and AI-powered products with clean architecture, fast APIs, and reliable cloud delivery.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View work</a>
+            <a class="button button-ghost" href="mailto:ahmadalvin92@gmail.com">Start a conversation</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel reveal" aria-label="Profile snapshot">
+          <div class="portrait-shell">
+            <img src="assets/avatar.jpg" alt="Ahmad Alvin Griffin" />
+          </div>
+          <div class="signal-grid">
+            <div>
+              <span>46</span>
+              <p>Public repos</p>
+            </div>
+            <div>
+              <span>96.4%</span>
+              <p>CNN validation accuracy</p>
+            </div>
+            <div>
+              <span>3.57</span>
+              <p>GPA / 4.00</p>
+            </div>
+            <div>
+              <span>2024</span>
+              <p>Bangkit Cloud cohort</p>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="ticker" aria-label="Core capabilities">
+        <div>
+          <span>React</span>
+          <span>Node.js</span>
+          <span>Laravel</span>
+          <span>PostgreSQL</span>
+          <span>Google Cloud Run</span>
+          <span>TensorFlow</span>
+          <span>OpenCV</span>
+          <span>Docker</span>
+        </div>
+      </section>
+
+      <section id="work" class="section split">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Experience</p>
+          <h2>Systems that keep teams moving.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <time>Dec 2025 - Present</time>
+            <h3>Fullstack Web Developer | IT Support Experience</h3>
+            <p class="muted">PT Radio Elshinta - Jakarta, Indonesia</p>
+            <p>
+              Developed an internal IT support ticketing system with React, Node.js, Express, PostgreSQL, Prisma, JWT authentication, and role based workflows.
+            </p>
+          </article>
+          <article class="timeline-item reveal">
+            <time>Jan 2024 - Feb 2024</time>
+            <h3>Software Engineer Intern</h3>
+            <p class="muted">PT Angkasa Pura II - Tangerang, Indonesia</p>
+            <p>
+              Built preventive maintenance and IT device monitoring platforms with Laravel, MySQL, LDAP, PDF exports, digital signatures, and structured reporting.
+            </p>
+          </article>
+          <article class="timeline-item reveal">
+            <time>Feb 2024 - Jul 2024</time>
+            <h3>Cloud Computing Cohort</h3>
+            <p class="muted">Bangkit Academy 2024 - Remote</p>
+            <p>
+              Shipped a cloud ML inference API using Google Cloud Run, Cloud Storage, API Gateway, Docker, monitoring, and collaborative ML/mobile delivery.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Selected projects</p>
+          <h2>Practical software, from internal tools to real-time AI.</h2>
+        </div>
+        <div class="project-grid">
+          <article class="project-card featured reveal">
+            <div class="project-meta">
+              <span>Computer Vision</span>
+              <a href="https://github.com/ahmadalvin92/real-time-face-gender-detection-cnn-inceptionv3" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>Real-time Face Gender Detection</h3>
+            <p>
+              End-to-end CNN system using InceptionV3, MediaPipe, OpenCV, and ONNX Runtime for efficient real-time inference.
+            </p>
+            <div class="tech-list">
+              <span>TensorFlow</span>
+              <span>ONNX</span>
+              <span>OpenCV</span>
+              <span>MediaPipe</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-meta">
+              <span>Fullstack</span>
+              <a href="https://github.com/ahmadalvin92/IT-Support-Ticket-System-Radio-Elshinta" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>IT Support Ticket System</h3>
+            <p>
+              Centralized ticket workflow with dashboards, activity tracking, JWT auth, Admin/User roles, and structured issue resolution.
+            </p>
+            <div class="tech-list">
+              <span>React</span>
+              <span>Express</span>
+              <span>PostgreSQL</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-meta">
+              <span>Laravel</span>
+              <a href="https://github.com/ahmadalvin92/radio-elshinta-jobdesk" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>Radio Elshinta Jobdesk</h3>
+            <p>
+              Operational web application for internal jobdesk tracking, built to support office workflows and clearer accountability.
+            </p>
+            <div class="tech-list">
+              <span>PHP</span>
+              <span>Laravel</span>
+              <span>MySQL</span>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-meta">
+              <span>Cloud API</span>
+              <a href="https://github.com/ahmadalvin92/API-Stunting-Express-JS" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+            <h3>Stunting ML Inference API</h3>
+            <p>
+              Containerized API for ML inference, deployed through the Bangkit capstone workflow with cloud storage and API delivery.
+            </p>
+            <div class="tech-list">
+              <span>Node.js</span>
+              <span>Docker</span>
+              <span>Cloud Run</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="stack" class="section stack-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Stack</p>
+          <h2>Comfortable across product layers.</h2>
+        </div>
+        <div class="stack-board reveal">
+          <div>
+            <h3>Frontend</h3>
+            <p>React.js, HTML, CSS, Tailwind, responsive dashboards, reusable interface patterns.</p>
+          </div>
+          <div>
+            <h3>Backend</h3>
+            <p>Node.js, Express.js, PHP, Laravel, REST APIs, Prisma, authentication, reporting flows.</p>
+          </div>
+          <div>
+            <h3>Data & Cloud</h3>
+            <p>PostgreSQL, MySQL, Google Cloud Run, Cloud Storage, Docker, Firebase, Git workflows.</p>
+          </div>
+          <div>
+            <h3>AI & Vision</h3>
+            <p>Python, TensorFlow, InceptionV3, OpenCV, MediaPipe, ONNX Runtime, real-time inference.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section education">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Education & leadership</p>
+          <h2>Built through research, campus leadership, and delivery work.</h2>
+        </div>
+        <div class="education-grid">
+          <article class="info-card reveal">
+            <h3>Universitas Diponegoro</h3>
+            <p class="muted">Bachelor of Computer Science, 2021 - 2025</p>
+            <p>
+              Focused on software engineering, databases, algorithms, and machine learning. Thesis: real-time CNN based gender detection using InceptionV3.
+            </p>
+          </article>
+          <article class="info-card reveal">
+            <h3>HMIF Learning Materials Manager</h3>
+            <p class="muted">Feb 2023 - Feb 2024</p>
+            <p>
+              Managed academic archives and solution banks for Informatics students, improving access to learning documents for hundreds of students.
+            </p>
+          </article>
+          <article class="info-card reveal">
+            <h3>Event & mentoring roles</h3>
+            <p class="muted">ANFORCOM, Informatics Gathering, i-Console</p>
+            <p>
+              Supported promotion, documentation, logistics, mentoring, and operations across department-level programs.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Contact</p>
+          <h2>Let us build something reliable, useful, and sharp.</h2>
+          <p>
+            Available for fullstack, cloud, computer vision, internal tools, dashboards, and production-oriented engineering work.
+          </p>
+        </div>
+        <div class="terminal reveal" aria-label="Contact information">
+          <div class="terminal-bar">
+            <span aria-hidden="true">&nbsp;</span>
+            <span aria-hidden="true">&nbsp;</span>
+            <span aria-hidden="true">&nbsp;</span>
+            <p>contact.sh</p>
+          </div>
+          <div class="terminal-body">
+            <p><span>$</span> email --to ahmad</p>
+            <a href="mailto:ahmadalvin92@gmail.com">ahmadalvin92@gmail.com</a>
+            <p><span>$</span> connect --social</p>
+            <div class="terminal-links">
+              <a href="https://github.com/ahmadalvin92" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://linkedin.com/in/ahmad-alvin-griffin" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="assets/Ahmad-Alvin-Griffin-CV.pdf" target="_blank" rel="noreferrer">Download CV</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>(c) 2026 Ahmad Alvin Griffin</p>
+      <p>Fullstack Web Developer | Computer Vision Builder | Cloud Computing Cohort</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
