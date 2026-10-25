@@ -1,111 +1,160 @@
-# Ahmad Alvin Griffin — Tech Portfolio
+# 🚀 Ahmad Alvin Griffin — Tech Portfolio
+### Modern Personal Techfolio & CMS • Next.js 15 • React 19 • TypeScript • Supabase
 
-Portfolio personal yang menampilkan profil, keahlian, pengalaman, proyek, dan kontak Ahmad Alvin Griffin. Konten publik dapat tetap tampil menggunakan data cadangan, sementara administrator dapat memperbarui konten melalui panel privat.
+Portfolio profesional personal yang menampilkan profil, keahlian, riwayat pengalaman kerja, proyek unggulan, dan kontak **Ahmad Alvin Griffin**. Dilengkapi dengan panel CMS admin privat berbasis Supabase Auth & PostgreSQL, serta resilient fallback system agar portofolio publik tetap dapat diakses dengan cepat meski tanpa koneksi database eksternal.
 
-## Fitur
+---
 
-- Halaman portofolio responsif dengan profil, keahlian, pengalaman, proyek, dan kontak.
-- Desain modern berbasis Next.js App Router dan React.
-- Panel admin di `/admin` untuk mengelola konten portofolio.
-- Login admin melalui Supabase Authentication.
-- Data portofolio tersimpan di Supabase Postgres.
-- Fallback data agar halaman publik tetap dapat dibuka bila Supabase belum dikonfigurasi.
-- Siap dideploy ke Vercel.
+## 📸 Preview & Screenshots
 
-## Teknologi
+### 🌐 Public Portfolio (Dark Futuristic Theme)
+<p align="center">
+  <img src="screenshots/home-page.png" alt="Public Portfolio Landing Page" width="95%" />
+</p>
 
-| Bagian | Teknologi |
-| --- | --- |
-| Bahasa | TypeScript, JavaScript, CSS |
-| Framework | Next.js 15 dan React 19 |
-| Backend/data | Supabase Auth dan Supabase Postgres |
-| Styling | CSS global dan komponen React |
-| Deployment | Vercel atau server Node.js |
+### 🔐 Admin Panel & Authentication
+<p align="center">
+  <img src="screenshots/admin-login.png" alt="Admin CMS Login" width="95%" />
+</p>
 
-## Struktur proyek
+---
+
+## ✨ Fitur Utama
+
+- **⚡ Fast & Modern UI**: Dibangun menggunakan Next.js 15 App Router & React 19 dengan performa tinggi dan transisi halus.
+- **🎨 Futuristic Cyber-Minimalist Design**: Skema warna gelap beraksen neon/emerald dengan tata letak responsif untuk desktop, tablet, dan smartphone.
+- **🛡️ Fallback Data System**: Konten publik tetap tampil sempurna menggunakan data cadangan terstruktur (*in-memory fallback*) bila koneksi database Supabase belum terkonfigurasi.
+- **🔒 Dedicated Admin CMS (`/admin`)**: Dashboard privat untuk memutakhirkan profil, proyek, timeline pengalaman kerja, dan keterampilan secara real-time.
+- **🔑 Secure Authentication**: Sistem login aman khusus administrator menggunakan Supabase Auth (Email & Password).
+- **🗄️ PostgreSQL Database**: Penyimpanan data relasional berbasis cloud melalui Supabase dengan skema SQL otomatis (`supabase/schema.sql`).
+- **☁️ Cloud & Vercel Ready**: Konfigurasi deployment instan untuk Vercel atau server containerized.
+
+---
+
+## 🛠️ Tech Stack & Bahasa Pemrograman
+
+| Komponen | Teknologi | Deskripsi |
+| :--- | :--- | :--- |
+| **Bahasa Utama** | `TypeScript`, `JavaScript` | Static typing ketat untuk keandalan kode frontend & backend routes |
+| **Framework Frontend** | `Next.js 15 (App Router)`, `React 19` | Server Components, Client Components, dan SEO-optimized routing |
+| **Styling & Design** | `Vanilla CSS`, `CSS Modules` | Desain glassmorphism, typography Outfit/Inter, dan micro-animations |
+| **Backend & Database** | `Supabase (PostgreSQL)` | Database cloud relasional dan REST/Realtime Client |
+| **Authentication** | `Supabase Auth` | Manajemen sesi admin dan proteksi route panel admin |
+| **Runtime & Tooling** | `Node.js 20+`, `npm` | Build tool terintegrasi Turbopack / Webpack Next.js |
+| **Deployment** | `Vercel` / Node server | Automated CI/CD pipeline |
+
+---
+
+## 📁 Struktur Direktori
 
 ```text
 Vinsky-Techfolio/
-├── app/                 # Route, halaman publik, dan dashboard admin
-├── components/          # Komponen antarmuka yang dapat digunakan ulang
-├── lib/                 # Konfigurasi Supabase, tipe data, dan fallback content
-├── public/assets/       # Foto profil dan CV untuk halaman publik
-├── supabase/schema.sql  # Skema database Supabase
-├── .env.example         # Contoh konfigurasi environment
-└── package.json
+├── app/                     # Next.js App Router (Routes & Layouts)
+│   ├── admin/               # Halaman login & dashboard admin CMS
+│   ├── api/                 # API route handlers
+│   ├── layout.tsx           # Root layout & meta tags SEO
+│   └── page.tsx             # Halaman utama public portfolio
+├── components/              # Komponen antarmuka modular
+│   ├── About.tsx            # Bagian perkenalan diri
+│   ├── AdminPanel.tsx       # Antarmuka pengelolaan data CMS
+│   ├── Contact.tsx          # Form kontak & social media link
+│   ├── Experience.tsx       # Timeline pengalaman kerja
+│   ├── Hero.tsx             # Hero section interaktif
+│   ├── Navbar.tsx           # Navigasi sticky
+│   ├── Projects.tsx         # Showcase kartu project
+│   └── Skills.tsx           # Grid keahlian teknis
+├── lib/                     # Utilitas, tipe data, konfigurasi Supabase
+├── public/                  # Aset statis (foto profil, CV, icon)
+├── screenshots/             # Dokumentasi screenshot aplikasi
+├── supabase/
+│   └── schema.sql           # Skema DDL tabel database Supabase
+├── .env.example             # Contoh template variabel lingkungan
+├── package.json             # Manifest paket & dependensi
+└── tsconfig.json            # Konfigurasi TypeScript
 ```
 
-## Prasyarat
+---
 
-- Node.js 20 LTS atau lebih baru
-- npm 10 atau lebih baru
-- Akun dan project Supabase (opsional untuk mode fallback, wajib untuk admin dan data dinamis)
+## ⚙️ Prasyarat Sistem
 
-## Instalasi lokal
+Sebelum menjalankan aplikasi, pastikan sistem Anda telah terpasang:
+- **Node.js**: Versi `20.x` LTS atau lebih tinggi
+- **npm**: Versi `10.x` atau lebih baru
+- Akun **Supabase** *(opsional untuk melihat tampilan publik, wajib jika ingin menggunakan Admin CMS)*
 
-1. Clone repository dan masuk ke folder proyek.
+---
 
-   ```bash
-   git clone https://github.com/ahmadalvin92/Vinsky-Techfolio.git
-   cd Vinsky-Techfolio
-   ```
+## 🚀 Panduan Instalasi & Menjalankan Lokal
 
-2. Instal dependency.
-
-   ```bash
-   npm install
-   ```
-
-3. Buat file konfigurasi lokal.
-
-   ```bash
-   cp .env.example .env.local
-   ```
-
-4. Isi `.env.local` dengan kredensial project Supabase.
-
-   ```env
-   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
-   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-supabase-publishable-key
-   ADMIN_EMAIL=your-admin-email@example.com
-   ```
-
-   Jangan pernah mengunggah `.env.local` atau API key rahasia ke repository.
-
-5. Jalankan aplikasi.
-
-   ```bash
-   npm run dev
-   ```
-
-   Buka `http://localhost:3000`.
-
-## Konfigurasi Supabase dan admin
-
-1. Buat project baru di Supabase.
-2. Buka **SQL Editor**, lalu jalankan file `supabase/schema.sql`.
-3. Di **Authentication > Users**, buat user admin dengan email yang sama seperti `ADMIN_EMAIL`.
-4. Pastikan provider Email/Password aktif.
-5. Buka `http://localhost:3000/admin` dan masuk memakai akun admin tersebut.
-
-Tanpa environment variable Supabase, tampilan publik tetap memakai data fallback. Fitur login dan perubahan konten tidak akan aktif sampai konfigurasi Supabase lengkap.
-
-## Perintah yang tersedia
-
+### 1. Clone Repositori
 ```bash
-npm run dev      # Menjalankan server pengembangan
-npm run build    # Membuat build produksi
-npm run start    # Menjalankan build produksi
-npm run lint     # Memeriksa kualitas kode
+git clone https://github.com/ahmadalvin92/Vinsky-Techfolio.git
+cd Vinsky-Techfolio
 ```
 
-## Deployment
+### 2. Instalasi Dependensi
+```bash
+npm install
+```
 
-Untuk Vercel, impor repository ini sebagai project baru, lalu masukkan tiga environment variable yang sama seperti `.env.local` pada pengaturan project. Jalankan `npm run build` secara lokal terlebih dahulu untuk memastikan build produksi berhasil.
+### 3. Konfigurasi Environment Variables
+Salin template konfigurasi `.env.example` menjadi `.env.local`:
+```bash
+cp .env.example .env.local
+```
 
-## Keamanan
+Buka `.env.local` lalu isi kredensial Supabase Anda:
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-supabase-publishable-key
+ADMIN_EMAIL=your-admin-email@example.com
+```
+> **Catatan:** Jangan pernah membagikan atau mengunggah file `.env.local` ke repositori publik.
 
-- Gunakan kata sandi admin yang kuat.
-- Batasi `ADMIN_EMAIL` hanya untuk akun yang diizinkan.
-- Simpan key Supabase hanya di environment variable platform deployment.
-- Pastikan RLS/policy pada Supabase sesuai dengan kebutuhan data sebelum aplikasi digunakan publik.
+### 4. Konfigurasi Database Supabase *(Opsional untuk CMS)*
+1. Masuk ke dashboard [Supabase](https://supabase.com).
+2. Buat proyek baru.
+3. Masuk ke menu **SQL Editor**, buka file `supabase/schema.sql`, salin seluruh kodenya lalu klik **Run**.
+4. Masuk ke menu **Authentication > Users**, klik **Invite User** atau buat user baru dengan email yang sama seperti nilai `ADMIN_EMAIL`.
+5. Pastikan metode autentikasi Email & Password aktif.
+
+### 5. Jalankan Server Pengembangan
+```bash
+npm run dev
+```
+Buka browser dan akses:
+- **Halaman Publik**: [http://localhost:3000](http://localhost:3000)
+- **Panel Admin**: [http://localhost:3000/admin](http://localhost:3000/admin)
+
+---
+
+## 📜 Daftar Skrip NPM
+
+| Perintah | Fungsi |
+| :--- | :--- |
+| `npm run dev` | Menjalankan local development server dengan hot reload |
+| `npm run build` | Melakukan build produksi teroptimasi |
+| `npm run start` | Menjalankan aplikasi dalam mode produksi |
+| `npm run lint` | Melakukan pemeriksaan kode dengan ESLint |
+
+---
+
+## 🚢 Panduan Deployment ke Vercel
+
+1. Push perubahan terbaru repositori Anda ke GitHub.
+2. Buka [Vercel Dashboard](https://vercel.com) dan klik **Add New > Project**.
+3. Hubungkan repositori `Vinsky-Techfolio`.
+4. Masukkan **Environment Variables**:
+   - `NEXT_PUBLIC_SUPABASE_URL`
+   - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+   - `ADMIN_EMAIL`
+5. Klik **Deploy**. Vercel akan otomatis melakukan build dan menyediakan URL live.
+
+---
+
+## 👨‍💻 Author
+
+**Ahmad Alvin Griffin**  
+- GitHub: [@ahmadalvin92](https://github.com/ahmadalvin92)
+- LinkedIn: [Ahmad Alvin](https://www.linkedin.com/in/ahmad-alvin)
+- Lokasi: Jakarta, Indonesia
