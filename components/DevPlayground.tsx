@@ -22,7 +22,7 @@ const CODE_SNIPPETS = [
 ];
 
 export function DevPlayground() {
-  const [activeTab, setActiveTab] = useState<"snake" | "typer">("snake");
+  const [activeTab, setActiveTab] = useState<"snake" | "typer" | "memory">("snake");
 
   return (
     <section id="arcade" className="section playground-section">
@@ -47,12 +47,21 @@ export function DevPlayground() {
             >
               ⌨️ Speed Typer
             </button>
+            <button
+              type="button"
+              className={`arcade-tab ${activeTab === "memory" ? "active" : ""}`}
+              onClick={() => setActiveTab("memory")}
+            >
+              🧠 Memory Matrix
+            </button>
           </div>
         </div>
       </div>
 
       <div className="playground-card">
-        {activeTab === "snake" ? <SnakeGame /> : <SpeedTyper />}
+        {activeTab === "snake" && <SnakeGame />}
+        {activeTab === "typer" && <SpeedTyper />}
+        {activeTab === "memory" && <MemoryMatrixGame />}
       </div>
     </section>
   );
@@ -77,7 +86,6 @@ function SnakeGame() {
   const foodRef = useRef<{ x: number; y: number }>({ x: 15, y: 10 });
   const gameLoopRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Sound generator using Web Audio API
   const playBeep = (freq: number, duration: number) => {
     if (!soundEnabled) return;
     try {
@@ -93,7 +101,7 @@ function SnakeGame() {
       osc.start();
       osc.stop(audioCtx.currentTime + duration);
     } catch {
-      // Audio not permitted or supported
+      // Audio not permitted
     }
   };
 
@@ -109,7 +117,6 @@ function SnakeGame() {
       x: Math.floor(Math.random() * cols),
       y: Math.floor(Math.random() * rows),
     };
-    // Ensure food doesn't spawn on snake
     while (snakeRef.current.some((segment) => segment.x === newFood.x && segment.y === newFood.y)) {
       newFood = {
         x: Math.floor(Math.random() * cols),
@@ -129,11 +136,9 @@ function SnakeGame() {
     const height = canvas.height;
     const gridSize = 20;
 
-    // Background
     ctx.fillStyle = "#070b09";
     ctx.fillRect(0, 0, width, height);
 
-    // Subtle grid lines
     ctx.strokeStyle = "rgba(73, 245, 169, 0.05)";
     ctx.lineWidth = 1;
     for (let x = 0; x <= width; x += gridSize) {
@@ -149,7 +154,6 @@ function SnakeGame() {
       ctx.stroke();
     }
 
-    // Food (Amber glow)
     const food = foodRef.current;
     ctx.save();
     ctx.shadowColor = "#f2b84b";
@@ -160,22 +164,18 @@ function SnakeGame() {
     ctx.fill();
     ctx.restore();
 
-    // Snake Body
     snakeRef.current.forEach((segment, index) => {
       ctx.save();
       if (index === 0) {
-        // Head
         ctx.fillStyle = "#49f5a9";
         ctx.shadowColor = "#49f5a9";
         ctx.shadowBlur = 14;
         ctx.fillRect(segment.x * gridSize + 1, segment.y * gridSize + 1, gridSize - 2, gridSize - 2);
 
-        // Eyes
         ctx.fillStyle = "#060807";
         ctx.fillRect(segment.x * gridSize + 4, segment.y * gridSize + 4, 3, 3);
         ctx.fillRect(segment.x * gridSize + gridSize - 7, segment.y * gridSize + 4, 3, 3);
       } else {
-        // Body (gradient cyan to green)
         ctx.fillStyle = index % 2 === 0 ? "#4dd7ff" : "#32b896";
         ctx.shadowColor = "#4dd7ff";
         ctx.shadowBlur = 4;
@@ -194,13 +194,11 @@ function SnakeGame() {
     const cols = 24;
     const rows = 18;
 
-    // Wall collision
     if (head.x < 0 || head.x >= cols || head.y < 0 || head.y >= rows) {
       endGame();
       return;
     }
 
-    // Self collision
     if (snakeRef.current.some((seg) => seg.x === head.x && seg.y === head.y)) {
       endGame();
       return;
@@ -208,7 +206,6 @@ function SnakeGame() {
 
     const newSnake = [head, ...snakeRef.current];
 
-    // Eat food
     if (head.x === foodRef.current.x && head.y === foodRef.current.y) {
       playBeep(620, 0.08);
       setScore((prev) => {
@@ -261,7 +258,6 @@ function SnakeGame() {
 
   const changeDirection = (newDir: { x: number; y: number }) => {
     const current = directionRef.current;
-    // Disallow reversing into self
     if (newDir.x !== -current.x || newDir.y !== -current.y) {
       directionRef.current = newDir;
     }
@@ -301,7 +297,6 @@ function SnakeGame() {
 
   return (
     <div className="snake-container">
-      {/* Game Bar */}
       <div className="arcade-header-bar">
         <div className="score-badge">
           <span>SCORE</span>
@@ -343,7 +338,6 @@ function SnakeGame() {
         </div>
       </div>
 
-      {/* Canvas Wrap */}
       <div className="canvas-wrapper">
         <canvas ref={canvasRef} width={480} height={360} className="snake-canvas" />
 
@@ -377,7 +371,6 @@ function SnakeGame() {
         )}
       </div>
 
-      {/* Touch D-Pad for Mobile Users */}
       <div className="mobile-dpad" aria-label="Mobile Game Controls">
         <div className="dpad-row">
           <button type="button" className="dpad-btn" onClick={() => changeDirection({ x: 0, y: -1 })}>
@@ -417,7 +410,6 @@ function SpeedTyper() {
   const [isCompleted, setIsCompleted] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
-  // Timer loop
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
     if (startTime && !isCompleted) {
@@ -436,7 +428,6 @@ function SpeedTyper() {
 
     setInput(val);
 
-    // Check completion
     if (val === targetCode) {
       setIsCompleted(true);
     }
@@ -453,12 +444,10 @@ function SpeedTyper() {
     setTimeout(() => inputRef.current?.focus(), 100);
   };
 
-  // Metrics calculation
   const wordsTyped = input.trim().split(/\s+/).filter(Boolean).length;
   const minutes = Math.max(elapsed / 60, 0.016);
   const wpm = Math.round(wordsTyped / minutes);
 
-  // Accuracy calculation
   let correctChars = 0;
   for (let i = 0; i < input.length; i++) {
     if (input[i] === targetCode[i]) correctChars++;
@@ -467,7 +456,6 @@ function SpeedTyper() {
 
   return (
     <div className="typer-container">
-      {/* Header bar */}
       <div className="arcade-header-bar">
         <div className="score-badge">
           <span>SPEED (WPM)</span>
@@ -501,7 +489,6 @@ function SpeedTyper() {
         </div>
       </div>
 
-      {/* Target Code with character highlight */}
       <div className="code-display-box" onClick={() => inputRef.current?.focus()}>
         <pre className="code-display-pre">
           {targetCode.split("").map((char, index) => {
@@ -518,7 +505,6 @@ function SpeedTyper() {
         </pre>
       </div>
 
-      {/* Input Text Area */}
       <div className="typer-input-wrap">
         <textarea
           ref={inputRef}
@@ -533,7 +519,6 @@ function SpeedTyper() {
         />
       </div>
 
-      {/* Completed Banner */}
       {isCompleted && (
         <div className="typer-win-card">
           <h4>🎉 Codebase Cleanly Compiled!</h4>
@@ -547,6 +532,191 @@ function SpeedTyper() {
           >
             Next Snippet →
           </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// -------------------------------------------------------------
+// 3. Memory Matrix (Tech Stack Match Game)
+// -------------------------------------------------------------
+interface TechCard {
+  id: number;
+  tech: string;
+  icon: string;
+  matched: boolean;
+}
+
+const TECH_PAIRS = [
+  { tech: "React 19", icon: "⚛️" },
+  { tech: "TypeScript", icon: "📘" },
+  { tech: "Docker", icon: "🐳" },
+  { tech: "PostgreSQL", icon: "🐘" },
+  { tech: "Spring Boot", icon: "🍃" },
+  { tech: "Python AI", icon: "🐍" },
+  { tech: "Bank Mandiri", icon: "🏦" },
+  { tech: "Next.js", icon: "▲" },
+];
+
+function MemoryMatrixGame() {
+  const [cards, setCards] = useState<TechCard[]>([]);
+  const [flippedIds, setFlippedIds] = useState<number[]>([]);
+  const [moves, setMoves] = useState(0);
+  const [matches, setMatches] = useState(0);
+  const [timer, setTimer] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isWon, setIsWon] = useState(false);
+
+  // Initialize and shuffle cards
+  const initGame = () => {
+    const deck: TechCard[] = [];
+    let id = 0;
+    TECH_PAIRS.forEach((item) => {
+      // Create 2 cards per pair
+      deck.push({ id: id++, tech: item.tech, icon: item.icon, matched: false });
+      deck.push({ id: id++, tech: item.tech, icon: item.icon, matched: false });
+    });
+
+    // Fisher-Yates shuffle
+    for (let i = deck.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+
+    setCards(deck);
+    setFlippedIds([]);
+    setMoves(0);
+    setMatches(0);
+    setTimer(0);
+    setIsPlaying(true);
+    setIsWon(false);
+  };
+
+  useEffect(() => {
+    initGame();
+  }, []);
+
+  // Timer loop
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (isPlaying && !isWon) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev + 1);
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isPlaying, isWon]);
+
+  const handleCardClick = (clickedId: number) => {
+    // Ignore click if 2 cards already flipped, or card already matched, or clicked card is already flipped
+    if (flippedIds.length === 2) return;
+    const clickedCard = cards.find((c) => c.id === clickedId);
+    if (!clickedCard || clickedCard.matched || flippedIds.includes(clickedId)) return;
+
+    const newFlipped = [...flippedIds, clickedId];
+    setFlippedIds(newFlipped);
+
+    if (newFlipped.length === 2) {
+      setMoves((m) => m + 1);
+      const [firstId, secondId] = newFlipped;
+      const firstCard = cards.find((c) => c.id === firstId);
+      const secondCard = cards.find((c) => c.id === secondId);
+
+      if (firstCard && secondCard && firstCard.tech === secondCard.tech) {
+        // Matched!
+        setTimeout(() => {
+          setCards((prev) =>
+            prev.map((c) => (c.id === firstId || c.id === secondId ? { ...c, matched: true } : c))
+          );
+          setFlippedIds([]);
+          setMatches((prev) => {
+            const next = prev + 1;
+            if (next === TECH_PAIRS.length) {
+              setIsWon(true);
+              setIsPlaying(false);
+            }
+            return next;
+          });
+        }, 350);
+      } else {
+        // Not matched, flip back after brief delay
+        setTimeout(() => {
+          setFlippedIds([]);
+        }, 850);
+      }
+    }
+  };
+
+  return (
+    <div className="memory-game-container">
+      {/* Header bar */}
+      <div className="arcade-header-bar">
+        <div className="score-badge">
+          <span>PAIRS MATCHED</span>
+          <strong>{matches} / {TECH_PAIRS.length}</strong>
+        </div>
+        <div className="score-badge">
+          <span>MOVES</span>
+          <strong>{moves}</strong>
+        </div>
+        <div className="score-badge">
+          <span>TIME</span>
+          <strong>{timer}s</strong>
+        </div>
+        <div className="arcade-controls-row">
+          <button type="button" className="button button-primary" onClick={initGame}>
+            🔄 New Game
+          </button>
+        </div>
+      </div>
+
+      {/* 4x4 Grid of Cards */}
+      <div className="memory-card-grid">
+        {cards.map((card) => {
+          const isFlipped = flippedIds.includes(card.id) || card.matched;
+          return (
+            <div
+              key={card.id}
+              className={`memory-card-item ${isFlipped ? "flipped" : ""} ${card.matched ? "matched" : ""}`}
+              onClick={() => handleCardClick(card.id)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Tech card: ${card.tech}`}
+            >
+              <div className="memory-card-inner">
+                {/* Card Back (Facing down) */}
+                <div className="memory-card-back">
+                  <span className="card-back-icon">⚡</span>
+                  <span className="card-back-text">DEV</span>
+                </div>
+                {/* Card Front (Facing up) */}
+                <div className="memory-card-front">
+                  <span className="card-tech-icon">{card.icon}</span>
+                  <span className="card-tech-name">{card.tech}</span>
+                  {card.matched && <span className="card-check">✓</span>}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Win Celebration Overlay */}
+      {isWon && (
+        <div className="memory-win-modal">
+          <div className="memory-win-box">
+            <span className="win-trophy">🏆</span>
+            <h3>Architecture Synced!</h3>
+            <p>
+              You cleared the Memory Matrix in <strong>{moves} moves</strong> and <strong>{timer} seconds</strong>.
+            </p>
+            <button type="button" className="button button-primary" onClick={initGame}>
+              Play Again 🚀
+            </button>
+          </div>
         </div>
       )}
     </div>

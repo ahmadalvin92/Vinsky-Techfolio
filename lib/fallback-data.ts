@@ -80,7 +80,7 @@ export const fallbackData: PortfolioData = {
         "Bachelor thesis research developing an end-to-end CNN deep learning model for real-time gender classification, achieving 96.4% validation accuracy.",
       href: "https://github.com/ahmadalvin92/real-time-face-gender-detection-cnn-inceptionv3",
       demoUrl: "https://github.com/ahmadalvin92/real-time-face-gender-detection-cnn-inceptionv3",
-      image: "/assets/avatar.jpg",
+      image: "/projects/face-gender.png",
       role: "Lead ML Researcher",
       tech: ["TensorFlow", "InceptionV3", "MediaPipe", "OpenCV", "ONNX Runtime", "Python"],
       featured: true,
