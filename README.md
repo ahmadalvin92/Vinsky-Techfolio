@@ -1,47 +1,70 @@
 # 🚀 Ahmad Alvin Griffin — Tech Portfolio
-### Modern Personal Techfolio & CMS • Next.js 15 • React 19 • TypeScript • Supabase
+### Modern Personal Techfolio & CMS • Next.js 15 • React 19 • TypeScript • Vercel
 
-Portfolio profesional personal yang menampilkan profil, keahlian, riwayat pengalaman kerja, proyek unggulan, dan kontak **Ahmad Alvin Griffin**. Dilengkapi dengan panel CMS admin privat berbasis Supabase Auth & PostgreSQL, serta resilient fallback system agar portofolio publik tetap dapat diakses dengan cepat meski tanpa koneksi database eksternal.
+<p align="center">
+  <a href="https://vinsky-techfolio.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-vinsky--techfolio.vercel.app-49f5a9?style=for-the-badge&logo=vercel&logoColor=black" alt="Vercel Live Demo" />
+  </a>
+  <a href="https://www.linkedin.com/in/ahmad-alvin-griffin/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-Ahmad_Alvin_Griffin-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Profile" />
+  </a>
+  <a href="https://github.com/ahmadalvin92" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-ahmadalvin92-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Profile" />
+  </a>
+</p>
+
+Portfolio profesional personal yang menampilkan profil, keahlian, riwayat pengalaman kerja (**PT Bank Mandiri ODP IT**, **PT Radio Elshinta**, **PT Angkasa Pura II**, **Bangkit Academy**), proyek unggulan dengan **Interactive Frontend Mockup Preview**, panel CMS admin privat, dan **Developer Playground / Arcade** (Retro Cyber Snake & Code Speed Typer).
+
+Setiap perubahan yang di-push ke branch `main` repositori GitHub ini akan **otomatis dideploy langsung ke Vercel** ([vinsky-techfolio.vercel.app](https://vinsky-techfolio.vercel.app/)).
 
 ---
 
-## 📸 Preview & Screenshots
+## 📸 Dokumentasi Antarmuka (Screenshots)
 
-### 🌐 Public Portfolio (Dark Futuristic Theme)
-<p align="center">
-  <img src="screenshots/home-page.png" alt="Public Portfolio Landing Page" width="95%" />
-</p>
+### 🌟 1. Hero Profil Interaktif & Dual Photo Mode
+| 👔 Formal Portrait (LinkedIn / Bank Mandiri) & Status ODP IT |
+| :---: |
+| ![Hero Profile](screenshots/01-hero-profile.png) |
+| *Dapat beralih mode antara foto formal LinkedIn dan avatar cyber developer GitHub secara instan* |
 
-### 🔐 Admin Panel & Authentication
-<p align="center">
-  <img src="screenshots/admin-login.png" alt="Admin CMS Login" width="95%" />
-</p>
+### 🚀 2. Interactive Projects Showcase & Frontend Mockup Modal
+| Proyek Unggulan & Filter Kategori | Modal Preview & Arsitektur Sistem |
+| :---: | :---: |
+| ![Projects Showcase](screenshots/02-projects-grid.png) | ![Interactive Project Modal](screenshots/03-project-modal.png) |
+| *Grid proyek dengan screenshot visual, tag teknologi & badge peran* | *Klik kartu proyek untuk membuka jendela browser mockup, fitur & link GitHub* |
+
+### 🕹️ 3. Developer Playground & Mini-Games
+| 🐍 Retro Cyber Snake & ⌨️ Code Speed Typer |
+| :---: |
+| ![Dev Arcade](screenshots/04-dev-arcade.png) |
+| *Mini-game interaktif beranimasi neon, score/high-score, sound synthesizer & tantangan mengetik kode WPM* |
 
 ---
 
-## ✨ Fitur Utama
+## ✨ Fitur-Fitur Utama
 
-- **⚡ Fast & Modern UI**: Dibangun menggunakan Next.js 15 App Router & React 19 dengan performa tinggi dan transisi halus.
-- **🎨 Futuristic Cyber-Minimalist Design**: Skema warna gelap beraksen neon/emerald dengan tata letak responsif untuk desktop, tablet, dan smartphone.
-- **🛡️ Fallback Data System**: Konten publik tetap tampil sempurna menggunakan data cadangan terstruktur (*in-memory fallback*) bila koneksi database Supabase belum terkonfigurasi.
+- **⚡ Next.js 15 App Router & React 19**: Performa ultra cepat, render server-side hybrid, dan transisi fluid tanpa lag.
+- **👔 Dual Photo Mode Toggle**: Pengunjung dapat memilih tampilan foto profil formal LinkedIn (Bank Mandiri ODP IT) atau avatar cyber developer GitHub.
+- **🔍 Clickable Project Modal & Live Mockup**: Setiap kartu proyek dapat diklik untuk memunculkan modal bergaya browser mockup dengan tangkapan layar antarmuka asli, ringkasan arsitektur, dan tautan langsung ke repositori GitHub.
+- **🕹️ Built-in Dev Arcade (Mini-Games)**:
+  - **🐍 Cyber Snake**: Game ular klasik bernuansa neon cyberpunk dengan skor, high score lokal, sound effect synthesizer (Web Audio API), tombol keyboard (WASD/Panah), dan on-screen touch D-Pad untuk pengguna mobile.
+  - **⌨️ Code Speed Typer**: Tantangan uji kecepatan mengetik cuplikan kode nyata (TypeScript, Python AI, SQL Banking, React WebSockets) lengkap dengan kalkulasi WPM dan akurasi karakter real-time.
+- **🛡️ Resilient Fallback Data System**: Konten publik tetap tampil lengkap dengan 10 proyek unggulan meski tanpa koneksi database eksternal.
 - **🔒 Dedicated Admin CMS (`/admin`)**: Dashboard privat untuk memutakhirkan profil, proyek, timeline pengalaman kerja, dan keterampilan secara real-time.
-- **🔑 Secure Authentication**: Sistem login aman khusus administrator menggunakan Supabase Auth (Email & Password).
-- **🗄️ PostgreSQL Database**: Penyimpanan data relasional berbasis cloud melalui Supabase dengan skema SQL otomatis (`supabase/schema.sql`).
-- **☁️ Cloud & Vercel Ready**: Konfigurasi deployment instan untuk Vercel atau server containerized.
+- **☁️ Continuous Deployment via Vercel**: Sinkronisasi otomatis dari branch `main` GitHub ke produksi di [vinsky-techfolio.vercel.app](https://vinsky-techfolio.vercel.app/).
 
 ---
 
-## 🛠️ Tech Stack & Bahasa Pemrograman
+## 🛠️ Tech Stack & Ekosistem
 
 | Komponen | Teknologi | Deskripsi |
 | :--- | :--- | :--- |
-| **Bahasa Utama** | `TypeScript`, `JavaScript` | Static typing ketat untuk keandalan kode frontend & backend routes |
-| **Framework Frontend** | `Next.js 15 (App Router)`, `React 19` | Server Components, Client Components, dan SEO-optimized routing |
-| **Styling & Design** | `Vanilla CSS`, `CSS Modules` | Desain glassmorphism, typography Outfit/Inter, dan micro-animations |
-| **Backend & Database** | `Supabase (PostgreSQL)` | Database cloud relasional dan REST/Realtime Client |
-| **Authentication** | `Supabase Auth` | Manajemen sesi admin dan proteksi route panel admin |
-| **Runtime & Tooling** | `Node.js 20+`, `npm` | Build tool terintegrasi Turbopack / Webpack Next.js |
-| **Deployment** | `Vercel` / Node server | Automated CI/CD pipeline |
+| **Framework Utama** | [Next.js 15](https://nextjs.org/) + [React 19](https://react.dev/) | App Router modern, Server Components, dan Client interactivity |
+| **Bahasa Pemrograman** | [TypeScript 5](https://www.typescriptlang.org/) | Strict static typing untuk memastikan keamanan tipe end-to-end |
+| **Styling & Theme** | CSS3 Modern Design System | Custom neon cyber aesthetic, glassmorphism, responsive grid & typography |
+| **Interactive Games** | HTML5 Canvas, Web Audio API | Zero external game dependencies, lightweight 60fps performance |
+| **Database & Auth** | Supabase (PostgreSQL) + Auth | Cloud persistence untuk CMS admin dengan in-memory fallback |
+| **Deployment & Hosting**| [Vercel](https://vercel.com/) | Automated git-push deployment pipeline |
 
 ---
 

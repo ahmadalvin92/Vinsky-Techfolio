@@ -7,6 +7,10 @@ export type Project = {
   tech: string[];
   featured: boolean;
   sort_order: number;
+  image?: string;
+  demoUrl?: string;
+  role?: string;
+  highlights?: string[];
 };
 
 export type Experience = {
